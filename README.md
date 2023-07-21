@@ -35,16 +35,16 @@ you are interested in battle-tested, production-ready Terraform code, check out 
    set the environment variable `TG_BUCKET_PREFIX` to set a custom prefix.
 1. Configure your AWS credentials using one of the supported [authentication
    mechanisms](https://www.terraform.io/docs/providers/aws/#authentication).
-1. Fill in your AWS Account ID's in `prod/account.hcl` and `non-prod/account.hcl`.
+2. Fill in your AWS Account ID's in `non-prod/account.hcl`.
 
 
 ### Deploying a single module
 
-1. `cd` into the module's folder (e.g. `cd non-prod/us-east-1/qa/mysql`).
-1. Note: if you're deploying the MySQL DB, you'll need to configure your DB password as an environment variable:
-   `export TF_VAR_master_password=(...)`.
-1. Run `terragrunt plan` to see the changes you're about to apply.
-1. If the plan looks good, run `terragrunt apply`.
+1. `cd` into the module's folder (e.g. `cd non-prod/us-east-1/demoacc/aws-key-pair`).
+2. Note: you may need to configure your sensitive values as an environment variable:
+   `export YOUR_VAR=(...)`.
+3. Run `terragrunt plan` to see the changes you're about to apply.
+4. If the plan looks good, run `terragrunt apply`.
 
 
 ### Deploying all modules in a region

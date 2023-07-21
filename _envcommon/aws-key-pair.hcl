@@ -29,6 +29,7 @@ locals {
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
   base_source_url = "git::git@github.com:cloudposse/terraform-aws-key-pair.git//"
+  #└── we pull this terraform module using the ssh protocol. You can still use https-based URLs, e.g. "github.com/cloudposse/terraform-aws-key-pair.git//."
 }
 
 
@@ -39,11 +40,12 @@ locals {
 # ---------------------------------------------------------------------------------------------------------------------
 inputs = {
   region                = local.aws_region
-  namespace             = "demo"
-  stage                 = local.env
-  name                  = "aws-key-pair-eksdomo1"
+  #namespace             = "demo"
+  #stage                 = local.env
+  name                  = "aws-key-pair-eksdemo1"
   ssh_public_key_path   = "/eksdemo1/ssh_key"
   generate_ssh_key      = true
   private_key_extension = ".pem"
   public_key_extension  = ".pub"
 }
+# Note: The namespace and stage inputs are disabled to shorten the key name.
