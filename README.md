@@ -1,4 +1,4 @@
-[![Maintained by Gruntwork.io](https://img.shields.io/badge/maintained%20by-gruntwork.io-%235849a6.svg)](https://gruntwork.io/?ref=repo_terragrunt-infra-live-example)
+[![Extended From Gruntwork.io](https://img.shields.io/badge/Extended%20from-gruntwork.io%20by%20Haidar-%235849a6.svg?style=plastic)](https://gruntwork.io/?ref=repo_terragrunt-infra-live-example)
 
 # Example infrastructure-live for Terragrunt
 
@@ -9,11 +9,7 @@ you can use with [Terragrunt](https://github.com/gruntwork-io/terragrunt) to kee
 DRY](https://github.com/gruntwork-io/terragrunt#keep-your-terraform-code-dry) section of the Terragrunt documentation.
 
 This repo shows an example of how to use the modules from the `terragrunt-infrastructure-modules-example` repo to
-deploy an Auto Scaling Group (ASG) and a MySQL DB across three environments (qa, stage, prod) and two AWS accounts
-(non-prod, prod), all without duplicating any of the Terraform code. That's because there is just a single copy of
-the Terraform code, defined in the `terragrunt-infrastructure-modules-example` repo, and in this repo, we solely define
-`terragrunt.hcl` files that reference that code (at a specific version, too!) and fill in variables specific to each
-environment.
+deploy an EKS Cluster.
 
 Be sure to read through [the Terragrunt documentation on DRY
 Architectures](https://terragrunt.gruntwork.io/docs/features/keep-your-terragrunt-architecture-dry/) to understand the
