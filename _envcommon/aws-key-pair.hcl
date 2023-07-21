@@ -10,7 +10,7 @@
 # needs to deploy a different module version, it should redefine this block with a different ref to override the
 # deployed version.
 terraform {
-  source = "${local.base_source_url}?ref=v0.7.0"
+  source = "${local.base_source_url}"
 }
 
 
@@ -20,13 +20,15 @@ terraform {
 locals {
   # Automatically load environment-level variables
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  region_vars      = read_terragrunt_config(find_in_parent_folders("region.hcl"))
 
   # Extract out common variables for reuse
-  env = local.environment_vars.locals.environment
+  env        = local.environment_vars.locals.environment
+  aws_region = local.region_vars.locals.aws_region
 
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
-  base_source_url = "git::git@github.com:gruntwork-io/terragrunt-infrastructure-modules-example.git//mysql"
+  base_source_url = "git::git@github.com:cloudposse/terraform-aws-key-pair.git//"
 }
 
 
@@ -36,11 +38,12 @@ locals {
 # environments.
 # ---------------------------------------------------------------------------------------------------------------------
 inputs = {
-  name              = "mysql_${local.env}"
-  instance_class    = "db.t2.micro"
-  allocated_storage = 20
-  storage_type      = "standard"
-  master_username   = "admin"
-
-  # TODO: To avoid storing your DB password in the code, set it as the environment variable TF_VAR_master_password
+  region                = local.aws_region
+  namespace             = "demo"
+  stage                 = local.env
+  name                  = "aws-key-pair-eksdomo1"
+  ssh_public_key_path   = "/eksdemo1/ssh_key"
+  generate_ssh_key      = true
+  private_key_extension = ".pem"
+  public_key_extension  = ".pub"
 }
