@@ -39,11 +39,12 @@ locals {
 # environments.
 # ---------------------------------------------------------------------------------------------------------------------
 inputs = {
-  region                = local.aws_region
   #namespace             = "demo"
   #stage                 = local.env
-  name                  = "aws-key-pair-eksdemo1"
-  ssh_public_key_path   = "/eksdemo1/ssh_key"
+  region                = local.aws_region
+  ssh_key_algorithm     = "RSA"
+  name                  = "nodegroup-key-pair-eksdemo1"
+  ssh_public_key_path   = "/Users/Some_User"
   generate_ssh_key      = true
   private_key_extension = ".pem"
   public_key_extension  = ".pub"
